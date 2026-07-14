@@ -1,0 +1,21 @@
+---
+- name: Kreiranje foldera i fajla
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Kreiraj folder /opt/laza
+      ansible.builtin.file:
+        path: /opt/laza
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Kreiraj joca.txt fajl
+      ansible.builtin.file:
+        path: /opt/laza/joca.txt
+        state: touch
+        owner: root
+        group: root
+        mode: '0644'

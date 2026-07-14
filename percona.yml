@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install gnupg2
+    apt:
+      name: gnupg2
+      state: present
+
+  - name: download percona-release package
+    get_url:
+      url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+      dest: /tmp/percona-release.deb
