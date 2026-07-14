@@ -16,3 +16,21 @@
   - name: install percona-release deb
     apt:
       deb: /tmp/percona-release.deb
+  
+  - name: enable ps-57 repository
+    command: percona-release enable-only ps-57
+  
+  - name: update repository index
+    apt:
+      update_cache: yes
+
+  - name: install percona server 5.7
+    apt:
+      name: percona-server-server-5.7
+      state: present
+
+  - name: ensure mysql service is running and enabled
+    service:
+      name: mysql
+      state: started
+      enabled: yes
